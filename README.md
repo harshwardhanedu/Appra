@@ -87,3 +87,8 @@ Cross-Team Collaboration:
 • Contributed to the team's knowledge base by writing a Git pre-commit hook and providing KT for onboarding. - fostering a collaborative learning environment.
 
 Overall, the commitment to acquiring digital skills, enhancing domain knowledge, embracing new technologies, and fostering collaboration showcases significant self-development. The completion of trainings and contributions to research tasks further affirm dedication to staying at the forefront of industry advancements.
+
+
+--------
+Consistently excelled in project delivery, exceeding adherence targets and ensuring efficient, quality outcomes. Demonstrated proactive commitment to audit and compliance, enhancing security posture across teams. Actively pursued self-development, acquiring digital skills and contributing to cross-team collaboration. Successfully expanded automation testing coverage, fostering a collaborative testing environment.
+
