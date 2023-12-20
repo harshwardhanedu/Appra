@@ -65,3 +65,25 @@ Documentation Precision:
 
 • Consistently achieved 80% adherence across all project categories, ensuring quality in each aspect.
 
+
+
+------------
+
+
+Digital Skills and Domain Knowledge:
+• Proactively acquired digital skills through diverse tasks such as gem graph generation, regression analysis, and API creation.
+• Demonstrated hands-on experience in raising defects and providing regression analysis, showcasing improved domain knowledge.
+Agile and Scrum Execution:
+• Matured execution in Agile and Scrum methodologies, evident in tasks like release checklist, Regression analysis implementation.
+• Successfully contributed to research tasks, including gem graph generation using Robocop, git pre commit hook. disable edge sidebar highlighting adaptability to new tools and methodologies.
+Continuous Learning:
+• Actively pursuing continuous learning and exploring etoud technologies and Microsoft Azure solutions for Care Radius
+Training Completion:
+• Timely completed assigned trainings, displaying a commitment to professional development and staying current with industry standards.
+Certifications:
+• Initiated the process illustrating dedication to personal and professional growth.
+Cross-Team Collaboration:
+• Actively participated in cross-team collaboration by providing knowledge transfer for new teammates, creating Confluence pages, and initiating collaborative initiatives for problem-solving.
+• Contributed to the team's knowledge base by writing a Git pre-commit hook and providing KT for onboarding. - fostering a collaborative learning environment.
+
+Overall, the commitment to acquiring digital skills, enhancing domain knowledge, embracing new technologies, and fostering collaboration showcases significant self-development. The completion of trainings and contributions to research tasks further affirm dedication to staying at the forefront of industry advancements.
