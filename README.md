@@ -92,3 +92,61 @@ Overall, the commitment to acquiring digital skills, enhancing domain knowledge,
 --------
 Consistently excelled in project delivery, exceeding adherence targets and ensuring efficient, quality outcomes. Demonstrated proactive commitment to audit and compliance, enhancing security posture across teams. Actively pursued self-development, acquiring digital skills and contributing to cross-team collaboration. Successfully expanded automation testing coverage, fostering a collaborative testing environment.
 
+
+
+import psutil
+import paramiko
+
+def get_remote_system_info(hostname, username, password):
+    # Connect to the remote machine
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(hostname, username=username, password=password)
+
+    # CPU information
+    cpu_info = {
+        'CPU Cores': psutil.cpu_count(logical=False),
+        'Logical CPUs': psutil.cpu_count(logical=True),
+        'CPU Usage (%)': psutil.cpu_percent(interval=1),
+    }
+
+    # Memory information
+    mem_info = {
+        'Total Memory (GB)': round(psutil.virtual_memory().total / (1024 ** 3), 2),
+        'Used Memory (GB)': round(psutil.virtual_memory().used / (1024 ** 3), 2),
+        'Free Memory (GB)': round(psutil.virtual_memory().free / (1024 ** 3), 2),
+    }
+
+    # Disk information
+    disk_info = {
+        'Total Disk Space (GB)': round(psutil.disk_usage('/').total / (1024 ** 3), 2),
+        'Used Disk Space (GB)': round(psutil.disk_usage('/').used / (1024 ** 3), 2),
+        'Free Disk Space (GB)': round(psutil.disk_usage('/').free / (1024 ** 3), 2),
+    }
+
+    # Network information
+    net_info = {
+        'Network Interfaces': psutil.net_if_list(),
+        'Network Usage': psutil.net_io_counters(pernic=True),
+    }
+
+    # Close the SSH connection
+    ssh.close()
+
+    return {
+        'CPU Info': cpu_info,
+        'Memory Info': mem_info,
+        'Disk Info': disk_info,
+        'Network Info': net_info,
+    }
+
+if __name__ == "__main__":
+    # Replace these values with your remote machine details
+    remote_hostname = 'your_remote_hostname'
+    remote_username = 'your_remote_username'
+    remote_password = 'your_remote_password'
+
+    remote_system_info = get_remote_system_info(remote_hostname, remote_username, remote_password)
+    for category, info in remote_system_info.items():
+        print(f'{category}:\n{info}\n')
+
