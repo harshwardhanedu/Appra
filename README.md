@@ -3,31 +3,19 @@ import re
 
 def get_tomcat_version(tomcat_path):
     try:
-        # Construct the path to the 'version.sh' file for Unix-like systems
-        version_script_unix = os.path.join(tomcat_path, 'bin', 'version.sh')
-        
-        # Construct the path to the 'version.bat' file for Windows systems
-        version_script_windows = os.path.join(tomcat_path, 'bin', 'version.bat')
-        
-        # Check if Tomcat version script exists for Unix-like systems
-        if os.path.isfile(version_script_unix):
-            version_script = version_script_unix
-        # Check if Tomcat version script exists for Windows systems
-        elif os.path.isfile(version_script_windows):
-            version_script = version_script_windows
-        else:
-            print("Tomcat version script not found.")
-            return None
-        
-        # Execute the version script and capture output
-        result = os.popen(version_script).read()
-        
-        # Extract the version from the output using regex
-        version_match = re.search(r'Version\s*:\s*(\d+\.\d+\.\d+)', result)
+        # Construct the path to the server.xml file
+        server_xml_path = os.path.join(tomcat_path, 'conf', 'server.xml')
+
+        # Read the server.xml file
+        with open(server_xml_path, 'r') as file:
+            server_xml_content = file.read()
+
+        # Search for the version information in the server.xml content
+        version_match = re.search(r'<Server version="Apache Tomcat/(.*?)"', server_xml_content)
         if version_match:
             return version_match.group(1)
         else:
-            print("Failed to extract Tomcat version.")
+            print("Tomcat version not found in server.xml.")
             return None
     except Exception as e:
         print("Error:", e)
