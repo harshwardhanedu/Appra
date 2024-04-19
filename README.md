@@ -1,32 +1,15 @@
-import os
-import re
+import subprocess
 
-def get_tomcat_version(tomcat_path):
+def get_tomcat_version():
     try:
-        # Construct the path to the server.xml file
-        server_xml_path = os.path.join(tomcat_path, 'conf', 'server.xml')
+        output = subprocess.check_output(["catalina.bat", "version"], stderr=subprocess.STDOUT, shell=True, universal_newlines=True)
+        version_start_index = output.find("Server version:")
+        version_end_index = output.find("\n", version_start_index)
+        version_string = output[version_start_index:version_end_index].split(": ")[1]
+        return version_string.strip()
+    except subprocess.CalledProcessError:
+        return "Error: Apache Tomcat not found or version information not available."
 
-        # Read the server.xml file
-        with open(server_xml_path, 'r') as file:
-            server_xml_content = file.read()
-
-        # Search for the version information in the server.xml content
-        version_match = re.search(r'<Server version="Apache Tomcat/(.*?)"', server_xml_content)
-        if version_match:
-            return version_match.group(1)
-        else:
-            print("Tomcat version not found in server.xml.")
-            return None
-    except Exception as e:
-        print("Error:", e)
-        return None
-
-# Provide the path to the Tomcat installation directory
-tomcat_path = "C:/path/to/tomcat"
-
-# Get Tomcat version
-tomcat_version = get_tomcat_version(tomcat_path)
-if tomcat_version:
-    print("Tomcat Version:", tomcat_version)
-else:
-    print("Failed to fetch Tomcat version.")
+# Example usage:
+tomcat_version = get_tomcat_version()
+print(f"The version of Apache Tomcat is: {tomcat_version}")
