@@ -1,15 +1,26 @@
 import subprocess
 
-def get_tomcat_version():
+def get_dotnet_version():
     try:
-        output = subprocess.check_output(["catalina.bat", "version"], stderr=subprocess.STDOUT, shell=True, universal_newlines=True)
-        version_start_index = output.find("Server version:")
-        version_end_index = output.find("\n", version_start_index)
-        version_string = output[version_start_index:version_end_index].split(": ")[1]
-        return version_string.strip()
-    except subprocess.CalledProcessError:
-        return "Error: Apache Tomcat not found or version information not available."
+        # Run the command to get installed .NET Framework versions
+        result = subprocess.run(['dotnet', '--list-sdks'], capture_output=True, text=True)
+        
+        # Extract the versions from the output
+        versions = []
+        lines = result.stdout.strip().split('\n')
+        for line in lines:
+            if line.startswith('['):
+                version = line.split('[')[1].split(']')[0]
+                versions.append(version)
+        
+        return versions
+    except Exception as e:
+        print("Error:", e)
+        return None
 
-# Example usage:
-tomcat_version = get_tomcat_version()
-print(f"The version of Apache Tomcat is: {tomcat_version}")
+# Test the function
+dotnet_versions = get_dotnet_version()
+if dotnet_versions:
+    print("Installed .NET SDK versions:", dotnet_versions)
+else:
+    print("Failed to fetch .NET SDK versions.")
