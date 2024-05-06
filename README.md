@@ -1,26 +1,26 @@
 import subprocess
 
-def get_dotnet_version():
+def get_iis_version():
     try:
-        # Run the command to get installed .NET Framework versions
-        result = subprocess.run(['dotnet', '--list-sdks'], capture_output=True, text=True)
+        # Run the command to get IIS version
+        result = subprocess.run(['%windir%\\system32\\inetsrv\\appcmd.exe', 'list', 'site', '/version'], capture_output=True, text=True)
         
-        # Extract the versions from the output
-        versions = []
+        # Extract the version from the output
+        iis_version = None
         lines = result.stdout.strip().split('\n')
         for line in lines:
-            if line.startswith('['):
-                version = line.split('[')[1].split(']')[0]
-                versions.append(version)
+            if 'IIS Version' in line:
+                iis_version = line.split(':')[1].strip()
+                break
         
-        return versions
+        return iis_version
     except Exception as e:
         print("Error:", e)
         return None
 
 # Test the function
-dotnet_versions = get_dotnet_version()
-if dotnet_versions:
-    print("Installed .NET SDK versions:", dotnet_versions)
+iis_version = get_iis_version()
+if iis_version:
+    print("Installed IIS version:", iis_version)
 else:
-    print("Failed to fetch .NET SDK versions.")
+    print("Failed to fetch IIS version.")
