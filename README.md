@@ -1,50 +1,24 @@
 import subprocess
-import os
 
-def find_appcmd():
-    # Search for appcmd.exe in the system PATH
-    for path in os.environ["PATH"].split(os.pathsep):
-        appcmd_path = os.path.join(path, "appcmd.exe")
-        if os.path.isfile(appcmd_path):
-            return appcmd_path
-    return None
-
-def get_iis_version_details():
+def get_ie_version():
     try:
-        # Find the path to appcmd.exe
-        appcmd_path = find_appcmd()
-        if not appcmd_path:
-            print("appcmd.exe not found in system PATH.")
+        # Use subprocess to execute the ver command and capture the output
+        result = subprocess.run(['cmd', '/c', 'ver'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True, text=True)
+        output = result.stdout
+
+        # Search for Internet Explorer version in the output
+        ie_version_line = [line for line in output.split('\n') if 'Internet Explorer' in line]
+        if ie_version_line:
+            ie_version = ie_version_line[0].split(' ')[-1].strip()
+            return ie_version
+        else:
             return None
-        
-        # Run the command to get IIS version details
-        result = subprocess.run([appcmd_path, 'list', 'site', '/text'], capture_output=True, text=True)
-        
-        # Check if the command execution was successful
-        if result.returncode != 0:
-            print("Error executing appcmd command:")
-            print(result.stderr)
-            return None
-        
-        # Extract the version details from the output
-        iis_version_details = {}
-        lines = result.stdout.strip().split('\n')
-        for line in lines:
-            if 'IIS Version' in line:
-                iis_version_details['Version'] = line.split(':')[1].strip()
-            elif 'Server Comment' in line:
-                iis_version_details['Server Comment'] = line.split(':')[1].strip()
-        
-        return iis_version_details
-    except Exception as e:
+    except subprocess.CalledProcessError as e:
         print("Error:", e)
         return None
 
-# Test the function
-iis_version_details = get_iis_version_details()
-if iis_version_details:
-    print("IIS version details:")
-    for key, value in iis_version_details.items():
-        print(f"{key}: {value}")
+ie_version = get_ie_version()
+if ie_version:
+    print("Internet Explorer version:", ie_version)
 else:
-    print("Failed to fetch IIS version details.")
+    print("Internet Explorer not found or an error occurred.")
