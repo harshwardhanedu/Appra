@@ -1,32 +1,50 @@
 import subprocess
+import os
 
-def get_tomcat_version():
+def find_appcmd():
+    # Search for appcmd.exe in the system PATH
+    for path in os.environ["PATH"].split(os.pathsep):
+        appcmd_path = os.path.join(path, "appcmd.exe")
+        if os.path.isfile(appcmd_path):
+            return appcmd_path
+    return None
+
+def get_iis_version_details():
     try:
-        # Run the command to get Tomcat version
-        result = subprocess.run(['%CATALINA_HOME%\\bin\\version.bat'], capture_output=True, text=True)
+        # Find the path to appcmd.exe
+        appcmd_path = find_appcmd()
+        if not appcmd_path:
+            print("appcmd.exe not found in system PATH.")
+            return None
+        
+        # Run the command to get IIS version details
+        result = subprocess.run([appcmd_path, 'list', 'site', '/text'], capture_output=True, text=True)
         
         # Check if the command execution was successful
         if result.returncode != 0:
-            print("Error executing version.bat command:")
+            print("Error executing appcmd command:")
             print(result.stderr)
             return None
         
-        # Extract the version from the output
-        tomcat_version = None
+        # Extract the version details from the output
+        iis_version_details = {}
         lines = result.stdout.strip().split('\n')
         for line in lines:
-            if 'Server version' in line:
-                tomcat_version = line.split(':')[1].strip()
-                break
+            if 'IIS Version' in line:
+                iis_version_details['Version'] = line.split(':')[1].strip()
+            elif 'Server Comment' in line:
+                iis_version_details['Server Comment'] = line.split(':')[1].strip()
         
-        return tomcat_version
+        return iis_version_details
     except Exception as e:
         print("Error:", e)
         return None
 
 # Test the function
-tomcat_version = get_tomcat_version()
-if tomcat_version:
-    print("Installed Tomcat version:", tomcat_version)
+iis_version_details = get_iis_version_details()
+if iis_version_details:
+    print("IIS version details:")
+    for key, value in iis_version_details.items():
+        print(f"{key}: {value}")
 else:
-    print("Failed to fetch Tomcat version.")
+    print("Failed to fetch IIS version details.")
