@@ -13,12 +13,14 @@ def get_chrome_version():
         version = result.stdout.strip().split()[-1]
         return version
     except Exception as e:
-        logging.info("Error:", e)
+        logging.error("Error occurred while fetching Chrome version: %s", e)
         return None
+    finally:
+        if version:
+            logging.info("Chrome version: " + version)
+        else:
+            logging.warning("Failed to fetch Chrome version")
+        logging.info("Script execution completed.")
 
 # Test the function
 chrome_version = get_chrome_version()
-if chrome_version:
-    logging.info("Chrome version: " + chrome_version)
-else:
-    logging.warning("Failed to fetch Chrome version")
