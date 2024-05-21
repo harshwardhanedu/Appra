@@ -32,10 +32,11 @@ def get_firefox_version():
         logging.error("Error: %s", e)
         return None
     finally:
-        if firefox_version:
-            logging.info("Firefox Version: %s", firefox_version)
-        else:
-            logging.warning("Failed to fetch Firefox version.")
         logging.info("Script execution completed.")
 
 firefox_version = get_firefox_version()
+
+if firefox_version:
+    logging.info("Firefox Version: %s", firefox_version)
+else:
+    logging.warning("Failed to fetch Firefox version.")
