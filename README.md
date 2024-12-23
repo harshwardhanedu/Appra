@@ -1,14 +1,1 @@
-
-@echo off
-:loop
-echo.
-echo Please enter q to exit or press any other key to continue...
-set /p input=
-
-if /I "%input%"=="q" (
-    echo Exiting...
-    exit
-) else (
-    echo You entered %input%, let's continue.
-    goto loop
-)
+Support in Audit and Compliance activities Improve security, compliance posture of platform teams no major compliance instance should be reported across teams for 2023. All compliance trainings to be completed by teams without any remin ders or defaulters except attrition or ML cases All mandatory trainings by team members need to be completed on time without any reminders or defaulters except attrition and ML cases. Follow audit and compliance processes all the time an d capture documentation - 100% Team Collaboration & Team Player Commitment to EXL Values: Collaboration, Respect, I ntegrity Accurate internal/external status reporting Adhere organization directives and policies, issued time to time.
