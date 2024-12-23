@@ -1,14 +1,1 @@
-Performance Evaluation Summary:
-
-In 2023, I consistently contributed to improving organizational and individual effectiveness by driving Agile adoption within projects and ensuring adherence to Agile principles. Key achievements include:
-	1.	Delivery Excellence:
-	•	Delivered assigned tasks with minimal schedule variance (within 1 day) and adhered to planned effort margins (+/-10%).
-	•	Maintained defect density within acceptable KPIs (2 defects per 100 hours) and ensured <5% defect leakage in UAT stages for QA deliverables.
-	2.	Proactive Risk Management:
-	•	Timely identified and addressed risks/issues, prioritizing tasks effectively to minimize project impact.
-	•	Conducted thorough research and preparation to resolve issues promptly and efficiently.
-	3.	Process Adherence and Standardization:
-	•	Regularly adhered to defined processes and contributed to establishing/enhancing templates, guidelines, checklists, and standards for projects and teams.
-	•	Promoted process consistency and improved team collaboration through well-defined frameworks.
-
-These contributions have strengthened project delivery, ensured high-quality outcomes, and supported seamless customer engagements, reflecting my commitment to delivery excellence and process improvement.
+100% = Minimum 80% adherence of each category for all project deliveries > Updates to JIRA for 100% working days; OTL Time log and status updates. > Capture technical specifications in appropriate document and add it to the Knowledge Repository for all tasks and user stories. > Update business document for respective changes made to the application. Ensure efficient, timely and quality deliverable. > Ensure proper utilization, Quality, Productivity, Accountability > Participate in Development/QA/RE activities. > Defined/established/adhere Configuration Management and Project guidelines. > Establish/enhanced template, Guideline, checklists and standards for project and team.
