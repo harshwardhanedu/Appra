@@ -1,1 +1,7 @@
-Support in Audit and Compliance activities Improve security, compliance posture of platform teams no major compliance instance should be reported across teams for 2023. All compliance trainings to be completed by teams without any remin ders or defaulters except attrition or ML cases All mandatory trainings by team members need to be completed on time without any reminders or defaulters except attrition and ML cases. Follow audit and compliance processes all the time an d capture documentation - 100% Team Collaboration & Team Player Commitment to EXL Values: Collaboration, Respect, I ntegrity Accurate internal/external status reporting Adhere organization directives and policies, issued time to time.
+Performance Evaluation Summary:
+
+In 2023, I successfully supported audit and compliance activities, ensuring no major compliance instances were reported. I ensured all mandatory trainings were completed on time without reminders (except for attrition/ML cases).
+
+I consistently adhered to audit processes, maintained 100% documentation accuracy, and contributed to successful audits. My efforts strengthened the compliance posture of platform teams.
+
+As a team player, I upheld EXL values—Collaboration, Respect, and Integrity—while fostering open communication and delivering accurate status reports. I remained fully committed to organizational policies and directives throughout the year.
