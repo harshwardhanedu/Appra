@@ -1,3 +1,9 @@
-Acquire Digital Skills and understanding of Digital Intelligence Improve domain knowledge and interpersonal skills from current levels Learn new skills and technologies like cloud technologies and the Microsoft Azure solution for Care Radius Learn and mature execution in Agile and Scrum delivery methodology. Timely completion of assigned trainings before end date without follow up. Technical and Business Certifications Participate or Initiate at least one initiative for cross team collaboration for an event/ solutioning/ problem solving.
+Performance Evaluation Summary:
+	•	Currently studying AZ-900 (Microsoft Azure Fundamentals) to enhance knowledge of cloud technologies and solutions like Microsoft Azure for Care Radius.
+	•	Successfully completed all mandatory trainings, including Generative AI, Value of Data Analysis, Cloud Foundations, and other foundational certifications, on time without follow-ups.
+	•	Improved domain knowledge and interpersonal skills, applying them effectively in day-to-day work and team interactions.
+	•	Gained proficiency in Agile and Scrum delivery methodologies, focusing on improving execution and team efficiency.
+	•	Participated in cross-team collaboration initiatives for events, solutioning, and problem-solving activities.
+	•	Actively working on acquiring technical and business certifications to align with organizational goals and personal development.
 
-India above description. Add points like I am currently studying about AZ 900, which is in the loop and I have completed all the trainings that were mandatory such as gen ai , value of data analysis, cloud, foundations certifications
+These contributions reflect my commitment to continuous learning, collaboration, and skill enhancement.
