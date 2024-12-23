@@ -1,7 +1,1 @@
-Performance Evaluation Summary:
-
-In 2023, I successfully supported audit and compliance activities, ensuring no major compliance instances were reported. I ensured all mandatory trainings were completed on time without reminders (except for attrition/ML cases).
-
-I consistently adhered to audit processes, maintained 100% documentation accuracy, and contributed to successful audits. My efforts strengthened the compliance posture of platform teams.
-
-As a team player, I upheld EXL values—Collaboration, Respect, and Integrity—while fostering open communication and delivering accurate status reports. I remained fully committed to organizational policies and directives throughout the year.
+Improve Organizational/Individual effectiveness Increasing Agile adoption within their projects and adherence to agile principles. > Delivery Excellence for Customer Engagements - Deliver assigned tasks with maximum of 1 day of schedule variance - Deliver assigned tasks within +/- 10% of planned effort - Deliver assigned tasks within acceptable defect density KPI i.e. 2 defect per 100hrs of work - For QA - <5% defect leakage in UAT stage >Timely identification and addressing of risks/issues > Ability to prioritize > Proper research and preparation on issues > Defined processes should be adhered regularly > Establish/enhanced template, Guideline, checklists and standards for project and team
