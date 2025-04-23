@@ -1,22 +1,40 @@
-Appraisal Comment:
-
-In 2023, I focused on enhancing my digital skills, domain knowledge, and interpersonal abilities. I am currently pursuing the AZ-900 certification and have completed all mandatory trainings, including Generative AI, Value of Data Analysis, and Cloud Foundations, on time. I improved execution in Agile and Scrum methodologies and actively participated in cross-team collaboration initiatives. My contributions reflect a commitment to continuous learning, timely delivery, and driving team efficiency
-
-.import psutil
 import subprocess
+import shutil
+import logging
 import os
 
-def get_chrome_version():
-    for proc in psutil.process_iter(['name', 'exe']):
-        try:
-            if proc.info['name'] and 'chrome' in proc.info['name'].lower():
-                chrome_path = proc.info['exe']
-                if chrome_path and os.path.exists(chrome_path):
-                    # Run the Chrome executable with --version to get version info
-                    version_output = subprocess.check_output([chrome_path, '--version'], stderr=subprocess.STDOUT)
-                    return version_output.decode().strip()
-        except (psutil.AccessDenied, psutil.NoSuchProcess, psutil.ZombieProcess, FileNotFoundError):
-            continue
-    return "Chrome process not found or version not retrievable."
+logging.basicConfig(filename='chrome_versions.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s: %(message)s')
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+logging.getLogger().addHandler(console_handler)
 
-print(get_chrome_version())
+def get_chrome_version():
+    version = None
+    chrome_commands = ['chrome', 'google-chrome']  # Fallbacks
+    paths_to_check = [
+        shutil.which(cmd) for cmd in chrome_commands
+    ] + [
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+    ]
+
+    try:
+        for path in paths_to_check:
+            if path and os.path.exists(path):
+                result = subprocess.run([path, '--version'], capture_output=True, text=True)
+                version = result.stdout.strip()
+                return version
+
+        raise FileNotFoundError("Chrome not found in known paths.")
+    except Exception as e:
+        logging.error("Error occurred while fetching Chrome version: %s", e)
+        return None
+    finally:
+        if version:
+            logging.info(f"Chrome version: {version}")
+        else:
+            logging.warning("Failed to fetch Chrome version")
+            logging.info("Script execution completed.")
+
+chrome_version = get_chrome_version()
