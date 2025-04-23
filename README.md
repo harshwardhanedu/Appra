@@ -1,7 +1,5 @@
 import subprocess
-import shutil
 import logging
-import os
 
 # Set up logging
 logging.basicConfig(filename='chrome_versions.log', level=logging.INFO,
@@ -11,35 +9,25 @@ console_handler.setLevel(logging.INFO)
 logging.getLogger().addHandler(console_handler)
 
 def get_chrome_version():
-    version = None
-    chrome_commands = ['chrome', 'google-chrome']
-    paths_to_check = [
-        shutil.which(cmd) for cmd in chrome_commands
-    ] + [
-        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-    ]
-
     try:
-        for path in paths_to_check:
-            if path and os.path.exists(path):
-                result = subprocess.run([path, '--version'], capture_output=True, text=True)
-                version = result.stdout.strip()
-                break  # Found the version, exit the loop
+        result = subprocess.run(
+            ['wmic', 'datafile', 'where', 
+             "name='C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe'", 
+             'get', 'Version', '/value'],
+            capture_output=True, text=True
+        )
+        output = result.stdout.strip()
+        version = output.split('=')[-1] if '=' in output else None
 
-        if not version:
-            raise FileNotFoundError("Chrome not found in known paths.")
-    except Exception as e:
-        logging.error("Error occurred while fetching Chrome version: %s", e)
-        return None
-    finally:
         if version:
             logging.info(f"Chrome version: {version}")
         else:
-            logging.warning("Failed to fetch Chrome version")
-            logging.info("Script execution completed.")
+            logging.warning("Chrome not found or version not retrieved")
 
-    return version
+        return version
+    except Exception as e:
+        logging.error("Error fetching Chrome version: %s", e)
+        return None
 
-# Call function
+# Execute
 chrome_version = get_chrome_version()
