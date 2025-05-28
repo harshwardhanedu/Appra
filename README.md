@@ -6,33 +6,29 @@ logging.basicConfig(level=logging.INFO)
 def get_chrome_version():
     version = None
     try:
-        # Use wmic to query the file version of chrome.exe
-        result = subprocess.run(
-            ['wmic', 'datafile', 'where', 'name="C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe"', 'get', 'Version', '/value'],
-            capture_output=True, text=True
-        )
+        # PowerShell command to get file version of chrome.exe
+        powershell_command = r'''
+        (Get-Item "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe").VersionInfo.ProductVersion
+        '''
+        result = subprocess.run(["powershell", "-Command", powershell_command], capture_output=True, text=True)
 
         if result.returncode == 0:
-            output = result.stdout.strip()
-            if "Version=" in output:
-                version = output.split('=')[1].strip()
-            else:
-                logging.warning("Chrome not found at default path, trying alternate path...")
-
-                # Try 64-bit installation path
-                result = subprocess.run(
-                    ['wmic', 'datafile', 'where', 'name="C:\\\\Program Files\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe"', 'get', 'Version', '/value'],
-                    capture_output=True, text=True
-                )
-                output = result.stdout.strip()
-                if "Version=" in output:
-                    version = output.split('=')[1].strip()
-
+            version = result.stdout.strip()
         else:
-            logging.error("WMIC command failed with return code: %s", result.returncode)
+            logging.warning("Trying alternate path...")
+
+            # Try 64-bit installation path
+            powershell_command_alt = r'''
+            (Get-Item "C:\Program Files\Google\Chrome\Application\chrome.exe").VersionInfo.ProductVersion
+            '''
+            result = subprocess.run(["powershell", "-Command", powershell_command_alt], capture_output=True, text=True)
+            if result.returncode == 0:
+                version = result.stdout.strip()
+            else:
+                logging.error("PowerShell failed with return code: %s", result.returncode)
 
     except Exception as e:
-        logging.error("Exception occurred while fetching Chrome version: %s", e)
+        logging.error("Error occurred while fetching Chrome version: %s", e)
 
     finally:
         if version:
